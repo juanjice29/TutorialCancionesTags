@@ -266,3 +266,5 @@ class Ventana_Album(QWidget):
         self.dialogo_agregar_cancion.close()
         
 
+def testSonarQuebe():
+    pass
