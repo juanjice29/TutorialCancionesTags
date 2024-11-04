@@ -218,3 +218,15 @@ class Coleccion():
         interpretes = [elem.__dict__ for elem in session.query(Interprete).filter(
             Interprete.nombre.ilike('%{0}%'.format(interprete_nombre))).all()]
         return interpretes
+    
+    def agregar_multiples_canciones(self, lista_canciones):
+        try:
+            for cancion_data in lista_canciones:
+                nueva_cancion = Cancion(**cancion_data)
+                session.add(nueva_cancion)
+            session.commit()
+            return True
+        except Exception as e:
+            session.rollback()
+            print(f"Error al agregar canciones: {e}")
+            return False
