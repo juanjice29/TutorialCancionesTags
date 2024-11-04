@@ -210,6 +210,10 @@ class Coleccion():
         interpretes = [elem.__dict__ for elem in session.query(Interprete).all()]
         return interpretes
 
+    def saludar(self):
+        saludo="Hola mundo"
+        print(saludo)
+        return saludo
     def buscar_interpretes_por_nombre(self, interprete_nombre):
         interpretes = [elem.__dict__ for elem in session.query(Interprete).filter(
             Interprete.nombre.ilike('%{0}%'.format(interprete_nombre))).all()]
