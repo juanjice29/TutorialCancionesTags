@@ -230,3 +230,40 @@ class Coleccion():
             session.rollback()
             print(f"Error al agregar canciones: {e}")
             return False
+    def eliminar_multiples_canciones(self, lista_cancion_ids):
+        try:
+            for cancion_id in lista_cancion_ids:
+                cancion = session.query(Cancion).filter(Cancion.id == cancion_id).first()
+                if cancion:
+                    session.delete(cancion)
+            session.commit()
+            return True
+        except Exception as e:
+            session.rollback()
+            print(f"Error al eliminar canciones: {e}")
+            return False
+
+    def eliminar_multiples_interpretes(self, lista_interprete_ids):
+        try:
+            for interprete_id in lista_interprete_ids:
+                interprete = session.query(Interprete).filter(Interprete.id == interprete_id).first()
+                if interprete:
+                    session.delete(interprete)
+            session.commit()
+            return True
+        except Exception as e:
+            session.rollback()
+            print(f"Error al eliminar intérpretes: {e}")
+            return False
+
+    def agregar_multiples_interpretes(self, lista_interpretes):
+        try:
+            for interprete_data in lista_interpretes:
+                nuevo_interprete = Interprete(**interprete_data)
+                session.add(nuevo_interprete)
+            session.commit()
+            return True
+        except Exception as e:
+            session.rollback()
+            print(f"Error al agregar intérpretes: {e}")
+            return False
